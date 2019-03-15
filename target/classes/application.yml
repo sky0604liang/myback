@@ -1,0 +1,73 @@
+spring:
+  datasource:
+    druid:
+      # JDBC����
+      url: jdbc:mysql://129.204.211.236:3306/myback?useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+
+      # ���ӳ�����
+      # ���ó�ʼ����С����С�����
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      # ��ȡ���ӵȴ���ʱʱ��
+      max-wait: 60000
+      pool-prepared-statements: true
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      # �����ý���һ�μ�⣬�����Ҫ�رյĿ�������
+      time-between-eviction-runs-millis: 60000
+      # һ�����������ӳ�����С������ʱ��
+      min-evictable-idle-time-millis: 300000
+      max-pool-prepared-statement-per-connection-size: 20
+      # �ϲ����DruidDataSource�ļ������
+      use-global-data-source-stat: true
+      filters: stat
+      filter:
+      # ��SQL��¼(sql���ִ��ʱ�䳬��ĳ�����޾ͼ�¼����)
+        stat:
+          slow-sql-millis: 200
+          log-slow-sql: true
+      # �������
+      # Druid WebStatFilter����
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: /druid/*,*.gif,*.png,*.jpg,*.html,*.js,*.css,*.ico
+      # Druid StatViewServlet����
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        # ��¼��ؽ�����û����Լ����룬��¼urlΪlocalhost:8080/druid
+        login-username: admin
+        login-password: admin
+        allow:
+        deny:
+  thymeleaf:
+    cache: false
+mvc:
+  static-path-pattern: /templates/**
+  view:
+    suffix: .html
+    prefix: classpath:/templates/
+  freemarker:
+      suffix: .html
+      request-context-attribute: request
+resources:
+  static-locations: classpath:/templates/
+mybatis:
+  #ָ��mybatisӳ���ļ���λ��
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+server:
+  port: 80
+logging:
+  level:
+    com:
+      back:
+          mapper: DEBUG

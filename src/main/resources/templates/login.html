@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>登录</title>  
+    <link rel="stylesheet" href="css/pintuer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/pintuer.js"></script>
+    <script src="/js/vue.min.js"></script>
+</head>
+<script>
+    $(function() {
+//        $.ajax({
+//            type : "get",
+//            url : "/getVerify",
+//            data: Math.random(),
+//              success : function(result) {
+//                console.log(result)
+//                  $("#imgVerify").attr("src",result);
+//            },
+//            error : function() {
+//                alert("請求失敗");
+//            }
+//        });
+        obj = httpurl + "getVerify?"+Math.random()
+//        $("#imgVerify").attr("src");
+//        $.get("getVerify");
+        function getVerify(obj){ obj.src = httpurl + "/sys/getVerify?"+Math.random(); }
+    });
+
+//获取验证码
+function getVerify(obj){
+        $.ajax({
+        type: "POST",
+        url: "/getVerify",
+        success: function(result){
+            $("#imgVerify").attr('src',result);
+        }
+    });
+}
+
+</script>
+<body>
+<div class="bg"></div>
+<div class="container" id="app">
+    <div class="line bouncein">
+        <div class="xs6 xm4 xs3-move xm4-move">
+            <div style="height:150px;"></div>
+            <div class="media media-y margin-big-bottom">           
+            </div>         
+            <form action="index.html" method="post">
+            <div class="panel loginbox">
+                <div class="text-center margin-big padding-big-top"><h1>管理系统{{message}}</h1></div>
+                <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
+                    <div class="form-group">
+                        <div class="field field-icon-right">
+                            <input type="text" class="input input-big" v-model="username" placeholder="电话号码" data-validate="required:请填写号码" />
+                            <span class="icon icon-user margin-small"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field field-icon-right">
+                            <input type="password" class="input input-big"v-model="password" placeholder="登录密码" data-validate="required:请填写密码" />
+                            <span class="icon icon-key margin-small"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field">
+                            <input type="text" class="input input-big" v-model="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                           <img src="images/passcode.jpg" alt="" id="imgVerify" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="getVerify(this);">
+                                                   
+                        </div>
+                    </div>
+                </div>
+                <div style="padding:30px;"><input type="button" class="button button-block bg-main text-big input-big" @click="login" value="登录"></div>
+            </div>
+            </form>          
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message:'aaaa',
+            username:'',
+            password:'',
+            code:''
+        },methods: {
+            login: function () {
+                var data = {
+                    phone:vm.username,
+                    password:vm.password
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/user/loginByPhone",
+                    data: data,
+                    success: function(result){
+                        if(result.code == "0"){//登录成功
+                            alert(result.msg);
+                            parent.location.href ='index.html';
+                        }else{
+                            alert(result.msg)
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

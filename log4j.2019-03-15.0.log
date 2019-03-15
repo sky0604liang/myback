@@ -1,0 +1,46 @@
+14:18:40.164 [main] ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.util.PropertySetter@6025e1b6 - Failed to invoke valueOf{} method in class [ch.qos.logback.core.util.FileSize] with value [20M]
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:169)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:82)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:117)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:293)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:266)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:229)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:202)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:75)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:54)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:347)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.back.BackApplication.main(BackApplication.java:12)
+14:18:56.856 [main] INFO  com.back.BackApplication - Starting BackApplication on PC-20181114BVLH with PID 9072 (D:\project\back\target\classes started by Administrator in D:\project\back)
+14:18:56.860 [main] INFO  com.back.BackApplication - No active profile set, falling back to default profiles: default
+14:18:57.249 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.back]' package. Please check your configuration.
+14:18:57.565 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+14:18:57.573 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+14:18:57.577 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+14:18:57.578 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.16]
+14:18:57.581 [main] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\java\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NetSarang\Xftp 6\;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\TortoiseSVN\bin;C:\java\\BIN;C:\Program Files\MySQL\MySQL Utilities 1.6\;D:\apache-maven-3.5.2\BIN;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;;.]
+14:18:57.628 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+14:18:57.628 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 706 ms
+14:18:57.712 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+14:18:58.155 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+14:18:58.404 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+14:18:58.527 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+14:18:58.539 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+14:18:58.541 [main] INFO  com.back.BackApplication - Started BackApplication in 1.975 seconds (JVM running for 2.29)
+14:18:58.596 [http-nio-80-exec-1] INFO  o.a.tomcat.util.http.parser.Cookie - A cookie header was received [1552296241; JSESSIONID=0BF40DF3212BE194AEEE75F8B8318149] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+14:19:08.567 [http-nio-80-exec-7] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:19:08.567 [http-nio-80-exec-7] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+14:19:08.571 [http-nio-80-exec-7] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+14:19:08.594 [http-nio-80-exec-7] DEBUG c.b.mapper.SysUserMapper.selectAll - ==>  Preparing: SELECT id,phone,username,password,salt,locked FROM sys_user 
+14:19:08.607 [http-nio-80-exec-7] DEBUG c.b.mapper.SysUserMapper.selectAll - ==> Parameters: 
+14:19:08.625 [http-nio-80-exec-7] DEBUG c.b.mapper.SysUserMapper.selectAll - <==      Total: 2
